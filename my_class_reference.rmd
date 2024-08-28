@@ -1,6 +1,6 @@
 ---
 title: "Class Reference"
-author: "Derek Willis"
+author: "Sade Ajishegiri"
 output:
   html_document:
     theme: cerulean
