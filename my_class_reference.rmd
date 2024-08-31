@@ -1,27 +1,29 @@
 ---
-title: "Class Reference"
-author: "Sade Ajishegiri"
-output:
-  html_document:
-    theme: cerulean
-    highlight: pygments
-    toc: true
-    toc_float:
-      collapsed: true
-      smooth_scroll: false
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+------------------------------------------------------------------------
+
+title: "Class Reference" author: "Sade Ajishegiri" output:
+html_document: theme: cerulean highlight: pygments toc: tru toc_float:
+collapsed: true smooth_scroll: false
 
 ## Introduction
 
-Consider this a personal guide to the commands and functions you will learn. In general, when you come across an R command or function that you want to remember, put it in here along with a description of what it does and when you'd use it.
+Consider this a personal guide to the commands and functions you will
+learn. In general, when you come across an R command or function that
+you want to remember, put it in here along with a description of what it
+does and when you'd use it.
 
 ### How to set the working directory
 
-The command to set a working directory is setwd(). For example, this sets the working directory to a directory called data_journalism_2024_fall inside a directory called jour472 located inside your home directory (the ~ is equivalent of /Users/[youruser] on a Mac).
+The command to set a working directory is setwd(). For example, this
+sets the working directory to a directory called
+data_journalism_2024_fall inside a directory called jour472 located
+inside your home directory (the \~ is equivalent of /Users/[youruser] on
+a Mac).
 
 ```{r}
 setwd("~/jour472/data_journalism_2024_fall")
@@ -33,3 +35,20 @@ setwd("~/jour472/data_journalism_2024_fall")
 install.packages("tidyverse")
 library(tidyverse)
 ```
+
+### How to assign a value to a variable
+
+"label\<-number"
+
+```{r}
+coolnumber <-5
+```
+
+### How to run code
+
+ctrl + shift + enter
+
+### How to add a new chunk
+
+Go to top right corner of this window and click the lil green c button
+with a plus, then select "R"
