@@ -110,7 +110,7 @@ In the space below, write the data type for the "last_name" column and the "amou
 head(maryland_winred_contributions)
 ```
 
-In the space below, write the first and last name from the *second* row of the data. 
+In the space below, write the first and last name from the *second* row of the data.
 
 **Answer:** Peggy and Mukai
 
