@@ -29,14 +29,14 @@ a Mac).
 setwd("~/jour472/data_journalism_2024_fall")
 ```
 
-### How to install and load the tidyverse
+### How to install and load the tidyverse:
 
 ```{r}
 install.packages("tidyverse")
 library(tidyverse)
 ```
 
-### How to assign a value to a variable
+### How to assign a value to a variable:
 
 "label\<-number"
 
@@ -44,11 +44,66 @@ library(tidyverse)
 coolnumber <-5
 ```
 
-### How to run code
+### How to run code:
 
 ctrl + shift + enter
 
-### How to add a new chunk
+### How to add a new chunk:
 
-Go to top right corner of this window and click the lil green c button
+Go to top right corner of this window and click the lil' green c button
 with a plus, then select "R"
+
+### \~ Lab 1 \~
+
+-   "group by" and "summary" stuff, AGGREGATES, means, medians, etc.
+
+-   "How much" = total; sum "How many" = counting (n) function
+
+-   DO NOT use the `readRDS` function but use `read_rds()`
+
+### To store something as a variable object:
+
+whatever you wanna name the object \<- code
+
+### Questions:
+
+-   what's the diff between .rds and .rmd files?
+
+### Prelab 2:
+
+-   changing data into a more useful version of itself
+
+-   working with dates
+
+-   mutate
+
+-   broom icon in top right gets rid of shit in the environment window
+
+-   read_csv NOT read.csv; read_csv is a tidyverse function and does more
+
+R sorts data by case, as well - it doesn't know that BALTIMORE and Baltimore
+
+takes a stringed value and uppercases it so that R reads them as the same
+
+DIFFERENT WAYS TO LOOK AT DATASETS:
+
+-   head(primary_24) - shows first 6 rows
+-   summary(primary_24) - shows quartiles
+-   colnames(primary_24) - lists all the columns
+-   glimpse(primary_24) - shows metadata of the dataset; shows how many
+    rows/columns, etc.
+
+### Mutate: - can add a new column to the data based on existing columns/data
+
+Filter function - always used double equals signs (==)
+
+Be careful using the select function - can accidently get rid of some columns
+
+AND is restrictive and intersectional
+
+### Sanity Check:
+
+-   clear environment
+-   run all and check for errors
+-   this makes sure that the code's been created in the specific
+    notebook
