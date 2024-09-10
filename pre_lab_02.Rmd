@@ -111,7 +111,7 @@ primary_24 |>
 Is this a more interesting or useful answer? Why?
 
 **Answer**
-I really don't know.
+
 
 ### Task 8: Standardize existing data using mutate
 
@@ -143,7 +143,7 @@ standardized_maryland_cities <- maryland_cities |>
 
 **Answer**
 str_to_lower makes all the letters lowercase
-str_to_title makes the first letter uppercase and the following lowercase
+str_to_title makes the first letter uppercase and those following lowercase
 
 There are lots of potential uses for standardization - addresses, zip codes, anything that can be misspelled or abbreviated.
 
@@ -172,7 +172,7 @@ Now that we've gotten a look, we can use `case_when` to give our new category co
 **Task** Run the following code and look at the output. Then write a sentence or two describing what you think the mutate statement is doing step by step.
 
 **Answer**
-
+Here, the mutate function is grouping each contributor into categories based on how much they donated.
 ```{r}
 maryland_winred_categories <- maryland_winred_contributions |>
   mutate(
@@ -351,4 +351,4 @@ So the month of June 2022 had the most expenditures by far in this data. We'll b
 Describe the values in the new `month` column - what do you think the data is showing here?
 
 **Answer**
-I think the data is showing amounts from each month of the year except May for some reason, but from different years??
+I think the data is showing amounts spent from each month of the year except May for some reason, but from different years?? Is it showing only the months when money was spent?
