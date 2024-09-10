@@ -60,7 +60,7 @@ primary_24 |>
 Describe what you think this code is doing below.
 
 **Answer**
-The code is dividing 
+The code is taking the information in the election_day column and dividing it by the info in the votes column to create a new column representing the percentages of voters who voted on election day as opposed to before.
 
 ### Task 5: Better percentage calculation
 
@@ -92,7 +92,7 @@ primary_24 |>
 How did the results change from the previous task, and why?
 
 **Answer**
-Now the percentages of voters who voted on election day are arranged in descending order. Everyone who voted for Laban Y. Seyoum, for example, voted on election day.
+Now the percentages of voters who voted on election day are arranged in descending order. Everyone (100% of people) who voted for Laban Y. Seyoum, for example, voted on election day.
 
 ### Task 7: Mutate with ordering, part 2
 
@@ -111,7 +111,7 @@ primary_24 |>
 Is this a more interesting or useful answer? Why?
 
 **Answer**
-Yes, because it's clearer what the data is representing.
+I really don't know.
 
 ### Task 8: Standardize existing data using mutate
 
@@ -142,8 +142,8 @@ standardized_maryland_cities <- maryland_cities |>
 **Task** Search the Internet for tidyverse functions similar to str_to_upper. Name at least two and describe what they do.
 
 **Answer**
-str_to_lower makes all the things lowercase
-str_to_
+str_to_lower makes all the letters lowercase
+str_to_title makes the first letter uppercase and the following lowercase
 
 There are lots of potential uses for standardization - addresses, zip codes, anything that can be misspelled or abbreviated.
 
@@ -202,6 +202,7 @@ maryland_winred_categories |>
 What's the largest category in terms of dollar amount?
 
 **Answer** 
+The "between $500 and $2999" category
 
 Mutate is there to make your data more useful and to make it easier for you to ask more and better questions of it.
 
@@ -250,6 +251,7 @@ And now we only have five columns of data for whatever analysis we might want to
 Notice that we made a new variable to hold the result. Why is that important?
 
 **Answer**
+Making a new variable to hold the result keeps things organized and now we can use and manipulate the new variable in future code.
 
 ### Task 12: Combining filters
 
@@ -312,6 +314,7 @@ head(maryland_expenses)
 ```
 
 **Answer:**
+Changes data type from "character" to "date" and formats it in year-month-day, allowing us to filter by date.
 
 Lubridate has functions for basically any type of character date format: mdy, ymd, even datetimes like ymd_hms.
 
@@ -348,3 +351,4 @@ So the month of June 2022 had the most expenditures by far in this data. We'll b
 Describe the values in the new `month` column - what do you think the data is showing here?
 
 **Answer**
+I think the data is showing amounts from each month of the year except May for some reason, but from different years??
