@@ -28,12 +28,6 @@ For this lab we'll be working with a slice of Maryland voter registration data: 
 ```{r}
 md_voters_2024 <- read_rds("data/lab_02.rds")
 ```
-```{r}
-glimpse(md_voters_2024)
-```
-```{r}
-filtered <- md_voters_2024|> filter(STATE_REGISTRATION_DATE>"2024-07-21")
-```
 
 ## Examine Data
 
@@ -41,21 +35,26 @@ Take a look at the data, getting familiar with what it contains. Most of the col
 
 ## Answer questions
 
-**Q1** How many voters appear to be *new* registrants since July 21, when President Joe Biden announced he would leave the race, based on the information above? Create a dataframe to hold only those voters. Which counties have seen the most? Take a look at county population figures here and compare the two in your answer: https://worldpopulationreview.com/us-counties/maryland.
+**Q1** How many voters appear to be *new* registrants since July 21, when President Joe Biden announced he would leave the race, based on the information above? Create a dataframe to hold the only those voters. Which counties have seen the most? Take a look at county population figures here and compare the two in your answer: https://worldpopulationreview.com/us-counties/maryland.
 
 **A1**
-17,083????
+
+```{r}
+```
 
 **Q2** A better question is whether the new voters you found in Q1 are an outlier compared to other weeks this year. Using the original dataframe with 2024 registrants, use `mutate()` and lubridate to produce week numbers from the COUNTY_REGISTRATION_DATE (Lubridate has a function that turns a date into a week number. Use that to answer this question). Save that to the original dataframe. Then calculate how many voters are in each week. Describe the distribution of voters groups in a sentence - are the weeks from July 21-August 7 different from the rest, and if so, how?
 
 **A2**
 
-
 ```{r}
-md_voters_2024 <- md_voters_2024 |> mutate(Week2024 = week(STATE_REGISTRATION_DATE))|>group_by(Week2024)|>summarize()
 ```
 
+**Q3** Using lubridate, show which month saw the largest number of registrations. Does the answer help shed more light on Q2?
+**A3** 
 
+```{r}
+
+```
 
 **Q4** Maryland has, officially, five regions: https://www.visitmaryland.org/article/maryland-regions. Modify the original dataframe again to add a `region` column based on the `COUNTY` value using case_when. Are you going to have to do this for every Maryland county plus Baltimore City? Yes, you are. Which regions and parties account for the most new voters?
 
