@@ -79,13 +79,18 @@ whatever you wanna name the object \<- code
 
 -   broom icon in top right gets rid of shit in the environment window
 
--   read_csv NOT read.csv; read_csv is a tidyverse function and does more
+-   read_csv NOT read.csv; read_csv is a tidyverse function and does
+    more
 
-R sorts data by case, as well - it doesn't know that BALTIMORE and Baltimore are the same city
+R sorts data by case, as well - it doesn't know that BALTIMORE and
+Baltimore are the same city
 
-takes a stringed value and uppercases it so that R reads them as the same
+takes a stringed value and uppercases it so that R reads them as the
+same
 
-`readr` anticipates some date formatting and can automatically handle many of these issues (indeed it uses lubridate under the hood). When you are importing a CSV file, be sure to use `read_csv`, not `read.csv`.
+`readr` anticipates some date formatting and can automatically handle
+many of these issues (indeed it uses lubridate under the hood). When you
+are importing a CSV file, be sure to use `read_csv`, not `read.csv`.
 
 DIFFERENT WAYS TO LOOK AT DATASETS:
 
@@ -99,12 +104,15 @@ DIFFERENT WAYS TO LOOK AT DATASETS:
 
 Filter function - always used double equals signs (==)
 
-Be careful using the select function - can accidentally get rid of some columns
+Be careful using the select function - can accidentally get rid of some
+columns
 
 AND is restrictive and intersectional
 
-
-**Filtering creates a subset of the data based on criteria**. All records where the amount is greater than 150,000. All records that match "College Park". Something like that. **Filtering works with rows -- when we filter, we get fewer rows back than we start with.**
+**Filtering creates a subset of the data based on criteria**. All
+records where the amount is greater than 150,000. All records that match
+"College Park". Something like that. **Filtering works with rows -- when
+we filter, we get fewer rows back than we start with.**
 
 ### Sanity Check:
 
@@ -112,3 +120,7 @@ AND is restrictive and intersectional
 -   run all and check for errors
 -   this makes sure that the code's been created in the specific
     notebook
+
+### LAB 2: CENTRAL IDEAS:
+- people who registered to vote after July 21st, esp.
+HOW TO SUMMARIZE: WILL ALWAYS USE A COLUMN
