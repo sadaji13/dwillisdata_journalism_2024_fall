@@ -100,7 +100,7 @@ glimpse(maryland_winred_contributions)
 
 In the space below, write the data type for the "last_name" column and the "amount" columns (it's in light gray, offset by \< \>). Also offer your best guess as to what the "last_name" column and the "amount" column represent. **Answer:**
 
-<chr> or character data type I'm guessing that the last name column represents each voter's surname, while the amount column represents how many U.S. dollars each person donated.
+<chr> or character data type; I'm guessing that the last name column represents each voter's surname, while the amount column represents how many U.S. dollars each person donated.
 
 ### Task 4: Examine data "head"
 
