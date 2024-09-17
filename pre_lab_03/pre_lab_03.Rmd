@@ -380,7 +380,7 @@ cleaned_conowingo
 
 **Answer**
 
-Just one.
+Just one. Also, what does this ~ symbol mean?
 ```{r}
 # cleaning function
 cleaned_conowingo <- conowingo |>
