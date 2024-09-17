@@ -41,7 +41,8 @@ Take a look at the data, getting familiar with what it contains. Most of the col
 
 ```{r}
 md_voters_2024 |>
-  filter(STATE_REGISTRATION_DATE=="2024-7-21" & COUNTY_REGISTRATION_DATE=="2024-7-21")
+  filter(STATE_REGISTRATION_DATE>"2024-7-21" & COUNTY_REGISTRATION_DATE>"2024-7-21")
+ 
 ```
 
 
@@ -50,6 +51,10 @@ md_voters_2024 |>
 **A2**
 
 ```{r}
+md_voters_2024|>
+  mutate(weeks=week(COUNTY_REGISTRATION_DATE))|>
+group_by(weeks)|>summarize(voters_per_week=n())
+   
 ```
 
 **Q3** Using lubridate, show which month saw the largest number of registrations. Does the answer help shed more light on Q2?

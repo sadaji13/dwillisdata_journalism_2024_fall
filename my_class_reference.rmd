@@ -124,3 +124,17 @@ we filter, we get fewer rows back than we start with.**
 ### LAB 2: CENTRAL IDEAS:
 - people who registered to vote after July 21st, esp.
 HOW TO SUMMARIZE: WILL ALWAYS USE A COLUMN
+
+The code below - group_by collects all the separate weeks, then summarize and count(n()) counts up each item and puts it into the new column we just made, which is "voters_per_week"
+```{r}
+md_voters_2024|>
+  mutate(weeks=week(COUNTY_REGISTRATION_DATE))|>
+group_by(weeks)|>summarize(voters_per_week=n())
+   
+```
+
+
+### LAB 3
+
+- distinct() gets rid of duplicates
+- 
