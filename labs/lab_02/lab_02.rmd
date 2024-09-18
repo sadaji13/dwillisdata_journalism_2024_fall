@@ -55,8 +55,10 @@ new_registrants <- md_voters_2024 |>
 
 **A2**
 
+
+Note: when the question says to save something to the original data frame, you need to retype the original and assign the code to it. 
 ```{r}
-md_voters_2024|>
+md_voters_2024 <- md_voters_2024|>
   mutate(weeks=week(COUNTY_REGISTRATION_DATE))|>
 group_by(weeks)|>summarize(voters_per_week=n())
    
