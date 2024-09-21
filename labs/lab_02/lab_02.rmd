@@ -41,10 +41,11 @@ Take a look at the data, getting familiar with what it contains. Most of the col
 There are 17,083 registrants in the new data frame, and the lab key says that 7 of those don't appear to be new registrants, but how did you figure that? I don't understand. I can see that running the key's code gives me 7 less observations of 40 variables than my initial code, but I don't know why and I know it's obvious but arghhhh
 
 ```{r}
-new_registrants <- md_voters_2024 |>
-  filter(STATE_REGISTRATION_DATE>"2024-7-21" & COUNTY_REGISTRATION_DATE>"2024-7-21")
-  
-  new_by_county <- new_voters |> 
+new_voters <- md_voters_2024 |> 
+  filter(STATE_REGISTRATION_DATE > '2024-07-21') |> 
+  filter(STATE_REGISTRATION_DATE == COUNTY_REGISTRATION_DATE)
+
+new_by_county <- new_voters |> 
   group_by(COUNTY) |> 
   summarize(voters = n()) |> 
   arrange(desc(voters))
@@ -54,30 +55,82 @@ new_registrants <- md_voters_2024 |>
 **Q2** A better question is whether the new voters you found in Q1 are an outlier compared to other weeks this year. Using the original dataframe with 2024 registrants, use `mutate()` and lubridate to produce week numbers from the COUNTY_REGISTRATION_DATE (Lubridate has a function that turns a date into a week number. Use that to answer this question). Save that to the original dataframe. Then calculate how many voters are in each week. Describe the distribution of voters groups in a sentence - are the weeks from July 21-August 7 different from the rest, and if so, how?
 
 **A2**
-
+Weeks 30 and 31 have the highest consecutive donation numbers, although week 24 had comparable numbers.
 
 Note: when the question says to save something to the original data frame, you need to retype the original and assign the code to it. 
 ```{r}
 md_voters_2024 <- md_voters_2024|>
-  mutate(weeks=week(COUNTY_REGISTRATION_DATE))|>
+  mutate(weeks=week(COUNTY_REGISTRATION_DATE))
+
+md_voters_2024|>
 group_by(weeks)|>summarize(voters_per_week=n())
    
 ```
 
 **Q3** Using lubridate, show which month saw the largest number of registrations. Does the answer help shed more light on Q2?
+
 **A3** 
+The month of July saw the largest number of registrations and the greatest difference between the amount of registrations from month to month is between June and July with a difference of 6,727 registrants. This seems to confirm that the weeks in July were indeed outliers.
 
 ```{r}
+md_voters_2024|>
+  mutate(month = floor_date(COUNTY_REGISTRATION_DATE,"month"))|>
+  group_by(month)|>
+  summarize(total=n())|>
+  arrange(desc(total))
 
 ```
 
 **Q4** Maryland has, officially, five regions: https://www.visitmaryland.org/article/maryland-regions. Modify the original dataframe again to add a `region` column based on the `COUNTY` value using case_when. Are you going to have to do this for every Maryland county plus Baltimore City? Yes, you are. Which regions and parties account for the most new voters?
 
 **A4** 
+The central and capital regions - and the democrats - account for most of the new voters.
 
+
+{NOTES: UNDERSTANDING WHAT YOU WANT TO DO IS THE MOST IMPORTANT PART, WHICH MEANS 
+KNOWING HOW TO PHRASE THE QUESTION
+using all the data; if some show up as na you fucked up
+
+Case_when explanation - 
+always used inside of a mutate because you are adding a new column based on the value of an existing column}
 ```{r}
+md_voters_2024 <- md_voters_2024|>
+  mutate(region = case_when(
+    COUNTY == 'Harford' ~ 'Central',
+    COUNTY == 'Howard' ~ 'Central',
+    COUNTY == 'Carroll' ~ 'Central',
+    COUNTY == 'Baltimore County' ~ 'Central',
+    COUNTY == 'Baltimore City' ~ 'Central',
+    COUNTY == 'Anne Arundel' ~ 'Central',
+    COUNTY == "Prince George's" ~ 'Capital',
+    COUNTY == 'Montgomery' ~ 'Capital',
+    COUNTY == 'Frederick' ~ 'Capital',
+    COUNTY == 'Allegany' ~ 'Western',
+    COUNTY == 'Garrett' ~ 'Western',
+    COUNTY == 'Washington' ~ 'Western',
+    COUNTY == 'Calvert' ~ 'Southern',
+    COUNTY == 'Charles' ~ 'Southern',
+    COUNTY == 'Calvert' ~ 'Southern',
+    COUNTY ==  "Saint Mary's" ~ 'Southern',
+     COUNTY == 'Kent' ~ 'Eastern Shore',
+    COUNTY == "Queen Anne's" ~ 'Eastern Shore',
+    COUNTY == 'Talbot' ~ 'Eastern Shore',
+    COUNTY == 'Caroline' ~ 'Eastern Shore',
+    COUNTY == 'Dorchester' ~ 'Eastern Shore',
+    COUNTY == 'Wicomico' ~ 'Eastern Shore',
+    COUNTY == 'Somerset' ~ 'Eastern Shore',
+    COUNTY == 'Worcester' ~ 'Eastern Shore',
+    COUNTY == 'Cecil' ~ 'Eastern Shore'
+  ))
+
+md_voters_2024 |> 
+  group_by(region, PARTY) |> 
+  summarize(voters = n()) |> 
+  arrange(desc(voters))
+    
 ```
 
 **Q5** What's an additional question you could ask of this data?
 
 **A5** 
+Why does it look like the democratic party in MD contains more newly-registered voters?
