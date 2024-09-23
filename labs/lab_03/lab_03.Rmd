@@ -78,20 +78,22 @@ cleaned_md_contribs <- md_contribs |>
     contributor_city == "BLATIMORE" ~ "BALTIMORE",
     contributor_city == "POTAMIC" ~ "POTOMAC",
     contributor_city == "ROCKWELL" ~ "ROCKVILLE",
-    contributor_city == "SILVER SPRINGS", "SILVER SPRING",
+    contributor_city == "SILVER SPRINGS" ~ "SILVER SPRING",
              TRUE ~ contributor_city))
 ```
-
-```
+Note: The "TRUE ~ 'column name'" at the end of the above code tells R that all the rest in the column should stay as the default.
 
 
 Q2: Find the 5-digit ZIP code in Maryland that had the highest total amount of contributions (by dollar value). You will need to use mutate to ensure that you have a zip code column with the first five characters from the existing zip code column.
 
 Where is that zip code and what kind of area is it, demographically? Which committee is the largest recipient of money from that zip code? How many of the top five recipients are Maryland candidates?
 
-A2:
+**A2**
+
 
 ```{r}
+md_contribs |>
+  mutate(same_zip = str_sub(contributor_zip, start=1L, end=5L))
 
 ```
 
