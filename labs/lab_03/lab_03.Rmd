@@ -93,8 +93,19 @@ Where is that zip code and what kind of area is it, demographically? Which commi
 
 ```{r}
 md_contribs |>
-  mutate(same_zip = str_sub(contributor_zip, start=1L, end=5L))
-
+  mutate(same_zip = str_sub(contributor_zip, start=1L, end=5L))|>
+  group_by(same_zip) |>
+  summarise(count(same_zip= n())) |>
+  arrange(desc(same_zip))
+```
+```{r}
+md_contribs |>
+  mutate(same_zip = str_sub(contributor_zip, start=1L, end=5L))|>
+ group_by(same_zip) |> 
+   summarise(
+    count=n()
+  ) |>
+  arrange(desc(same_zip))
 ```
 
 Q3: Let's look at top individual donors. Write code to generate a list of top donors using name and city, adding up the total amount of contributions. What does the original data say about the top two donors - who are they and what do they do? Do you see anything in the list of top 10 donors that would make you uncertain about the accuracy of these results?
