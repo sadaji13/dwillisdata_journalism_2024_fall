@@ -98,6 +98,8 @@ md_contribs |>
   summarise(count(same_zip= n())) |>
   arrange(desc(same_zip))
 ```
+
+Okay, so it didn't like how in the above code, I put same_zip so many times
 ```{r}
 md_contribs |>
   mutate(same_zip = str_sub(contributor_zip, start=1L, end=5L))|>
