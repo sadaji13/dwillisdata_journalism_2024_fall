@@ -89,7 +89,7 @@ Q2: Find the 5-digit ZIP code in Maryland that had the highest total amount of c
 Where is that zip code and what kind of area is it, demographically? Which committee is the largest recipient of money from that zip code? How many of the top five recipients are Maryland candidates?
 
 **A2**
-
+The zip code is 20815, just outside of Washington, D.C., part of(?) Bethesda. most of the population here make more than $200,000 annually.
 
 ```{r}
 md_contribs |>
@@ -115,5 +115,11 @@ Q3: Let's look at top individual donors. Write code to generate a list of top do
 A3:
 
 ```{r}
-
+md_contribs |>
+  mutate(contributor_last_name = str_sub(contributor_zip, start=1L, end=5L))|>
+ group_by(contributor_last_name) |> 
+   summarise(
+    count=n()
+  ) |>
+  arrange(desc(contributor_last_name))
 ```
