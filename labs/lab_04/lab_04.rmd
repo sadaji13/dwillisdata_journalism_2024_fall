@@ -59,32 +59,89 @@ Then, when you are done standardizing `purpose_clean`, export it as a new CSV fi
 
 Then, using that `purpose_clean` column, write code to find the largest amounts of spending on categories by both campaigns.
 
-**A1.**
-
+NOTE: "AMOUNTS" -  SO SUM!
 ```{r}
+md_expenditures <- read_csv("data/lab_04_md_senate_expenses.csv")
 
 ```
+
+
+**A1.**
+
+Both Alsobrooks and Hogan spent the most on advertising.
+```{r}
+md_expenditures |>
+
+    group_by(candidate,purpose_clean)|>
+   summarize(most_spent = sum(amount)) |> 
+  arrange(desc(most_spent))
+
+  
+```
+
+NOTE: COUNTING VS SUMMING - counting is how many individual pieces of something; summing is what those EQUAL - like 5 pieces of paper money could sum to 5 dollars, but it could also sum up to 500 dollars.
 
 **Q2.** Let's do some research on the top purposes from A1. Feel free to search the Web to understand those terms better if need be, and then write a description comparing and contrasting the two campaigns' largest categories of spending.
 
 **A2.**
+Alsobrooks spent most of her funds on ads, likely because Marylanders don't really know who she is yet, while Hogan, in contrast, has been governor twice. She also spent a good deal in the mailing lists category, which includes payments to third-party services that help candidates compile lists of voters and reach out to them. I'm guessing for a similar reason to the above.
+
+Hogan did spend most of his funds on advertising,too, but he spent much less than Alsobrooks - again, probably because most voters in Maryland already know who he is. I think it's kind of ironic that one of his top spending categories is "fundraising services" - a label his campaign used. Researching some of the companies paid for this category, it looks like it's going to campaign fundraising consulting firms.
 
 **Q3.** Pick one of the top categories for each campaign and write code that shows how that spending has changed over time, if at all. You'll need to use lubridate for this. Write a couple of sentences describing that pattern.
 
 **A3.**
 
 ```{r}
+md_expenditures|>
+  filter(candidate==Hogan)|>
+  
+mutate(by_month = floor_date(date,"month")) |>
+ 
+   group_by(by_month) |>
+   summarize(total_month = sum(amount)) |> 
+  arrange(desc(total_month))
+```
+NOTE: THE ABOVE ERROR HAPPENED, I THINK, BECAUSE I DIDN'T PUT HOGAN IN PARENTHESES.
 
+```{r}
+md_expenditures|>
+  filter(candidate=="Hogan")|>
+  
+mutate(by_month = floor_date(date,"month")) |>
+ 
+   group_by(by_month) |>
+   summarize(total_month = sum(amount)) |> 
+  arrange(desc(total_month))
+```
+NOTE: OKAY BUT I NEED TO SEE TOP SPENDING IN A CATEGORY, NOT OVERALL.
+```{r}
+md_expenditures|>
+  filter(candidate=="Hogan")|>
+  filter(purpose_clean=="ADS")
+mutate(by_month = floor_date(date,"month")) |>
+ 
+   group_by(by_month) |>
+   summarize(total_month = sum(amount)) |> 
+  arrange(desc(total_month))
+```
+NOTE: I don't get the above error. What happens when I just use filter?
+
+```{r}
+md_expenditures|>
+  filter(candidate=="Hogan")|>
+  filter(purpose_clean=="ADS")
+```
+NOTE: HMMM. Let me try again.
+```{r}
 
 ```
+
 
 **Q4.** Which committee has the larger payroll or salary spending so far? How many unique recipients of payroll/staff spending are there for each candidate?
 
 **A4.**
 
-```{r}
-
-```
 
 **Q5** What's the most interesting story idea you've found in this data?
 
