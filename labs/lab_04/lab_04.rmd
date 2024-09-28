@@ -91,7 +91,7 @@ Hogan did spend most of his funds on advertising,too, but he spent much less tha
 **Q3.** Pick one of the top categories for each campaign and write code that shows how that spending has changed over time, if at all. You'll need to use lubridate for this. Write a couple of sentences describing that pattern.
 
 **A3.**
-
+It looks like for both candidates, they don't spend as much on advertising at the very beginning of the campaign, which surprised me. Both Hogan and Alsobrooks appear to have spent the most on advertising around April, May and June.
 ```{r}
 md_expenditures|>
   filter(candidate==Hogan)|>
@@ -118,31 +118,62 @@ NOTE: OKAY BUT I NEED TO SEE TOP SPENDING IN A CATEGORY, NOT OVERALL.
 ```{r}
 md_expenditures|>
   filter(candidate=="Hogan")|>
-  filter(purpose_clean=="ADS")
+  filter(purpose_clean=="ADS")|>
 mutate(by_month = floor_date(date,"month")) |>
  
    group_by(by_month) |>
-   summarize(total_month = sum(amount)) |> 
-  arrange(desc(total_month))
+   summarize(total_month_on_ads = sum(amount)) |> 
+  arrange(desc(total_month_on_ads))
 ```
-NOTE: I don't get the above error. What happens when I just use filter?
-
 ```{r}
 md_expenditures|>
-  filter(candidate=="Hogan")|>
-  filter(purpose_clean=="ADS")
-```
-NOTE: HMMM. Let me try again.
-```{r}
-
+  filter(candidate=="Alsobrooks")|>
+  filter(purpose_clean=="ADS")|>
+mutate(by_month = floor_date(date,"month")) |>
+ 
+   group_by(by_month) |>
+   summarize(total_month_on_ads = sum(amount)) |> 
+  arrange(desc(total_month_on_ads))
 ```
 
 
 **Q4.** Which committee has the larger payroll or salary spending so far? How many unique recipients of payroll/staff spending are there for each candidate?
+```{r}
+md_expenditures|>
+  filter(candidate=="Alsobrooks")|>
+  filter(purpose_clean=="PAYROLL TAXES/FEES")|>
+mutate(to_date = floor_date(date,"year")) |>
+ 
+   group_by(to_date) |>
+   summarize(payroll_spending = sum(amount)) |> 
+  arrange(desc(payroll_spending))
+```
+```{r}
+md_expenditures|>
+  filter(candidate=="Alsobrooks")|>
+  filter(purpose_clean=="SALARY")|>
+mutate(to_date = floor_date(date,"year")) |>
+ 
+   group_by(to_date) |>
+   summarize(payroll_spending = sum(amount)) |> 
+  arrange(desc(payroll_spending))
+```
+There's gotta be a way to do that all at once.
+```{r}
+md_expenditures|>
+  filter(candidate=="Hogan")|>
+  filter(purpose_clean=="PAYROLL TAXES/FEES")|>
+mutate(to_date = floor_date(date,"year")) |>
+ 
+   group_by(to_date) |>
+   summarize(payroll_spending = sum(amount)) |> 
+  arrange(desc(payroll_spending))
+```
 
 **A4.**
-
+Alsobrook's campaign has spent the most on payroll so far. Is it correct that Hogan hasn't spent anything on payroll/salary stuff??
 
 **Q5** What's the most interesting story idea you've found in this data?
 
 **A5**
+If I haven't made a grave error and Hogan has indeed not spent anything on payroll fees, taxes or salary fees, then I think that's pretty weird - especially compared to what Alsobrook's campaign has spent in that category. If he's filing it under a different name, what is that name and why?
