@@ -41,13 +41,17 @@ Next, let's read in the new voters (people who registered in 2024):
 
 ```{r}
 # load the new voters data
+new_voters <- read_csv("data/new_voters.csv")
 ```
 
 Next join the Harris donations to the voter data. Remember, people's names are common, __so you'll want to use name columns and address information__. You'll need to figure out which columns to use from both dataframes. The new_voters data has both a single Address column and various parts of the address, such as HouseNumber. Make a plan for picking your join columns - try out some combinations - and save the results to a new dataframe.
 
+
 ```{r}
 # join the combined Harris file to the new voters
 # you will need to determine what columns to use
+
+harris_contributors_and_new_voters <- harris_combined_contribs |> left_join(new_voters, join_by(address_one==Address))
 ```
 
 ## Answer questions
