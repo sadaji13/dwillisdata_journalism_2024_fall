@@ -53,6 +53,15 @@ Next join the Harris donations to the voter data. Remember, people's names are c
 
 harris_contributors_and_new_voters <- harris_combined_contribs |> left_join(new_voters, join_by(address_one==Address))
 ```
+QUESTION: you can only join by one column, right??
+
+
+Can you join by if multiple columns are the same??
+
+```{r}
+join_by_zip <- harris_combined_contribs|> left_join(new_voters, join_by(zip==ResidentialZip))
+view(join_by_zip)
+```
 
 ## Answer questions
 
