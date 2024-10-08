@@ -53,15 +53,25 @@ Next join the Harris donations to the voter data. Remember, people's names are c
 
 harris_contributors_and_new_voters <- harris_combined_contribs |> left_join(new_voters, join_by(address_one==Address))
 ```
-QUESTION: you can only join by one column, right??
+NOTE: Remember that using a left join takes EVERYTHING from the left, will SHOW me everything from the left, but then ONLY WHAT matches from the right. (Do I have that right?)
 
-
-Can you join by if multiple columns are the same??
 
 ```{r}
-join_by_zip <- harris_combined_contribs|> left_join(new_voters, join_by(zip==ResidentialZip))
-view(join_by_zip)
+join_by_zip <- harris_combined_contribs|> inner_join(new_voters, join_by(zip==ResidentialZip))
 ```
+NOTE: Did I overload R?
+
+
+```{r}
+new_harris_voters <- new_voters|> inner_join(harris_combined_contribs, join_by(LastName==last_name, Address==address_one, ResidentialZip==zip))
+```
+```{r}
+new_harris_voters <- new_voters|> inner_join(harris_combined_contribs, join_by(LastName==last_name,FirstName==first_name, Address==address_one, ResidentialZip==zip))
+```
+```{r}
+new_harris_donors <- harris_combined_contribs|> left_join(new_harris_voters,join_by(last_name==LastName, first_name==FirstName, address_one==Address, zip==ResidentialZip))
+```
+wait wait ignore that idk what i was trying there
 
 ## Answer questions
 
@@ -69,21 +79,34 @@ Q1. Explain why you used the columns you did to make the join, and why that resu
 
 A1. 
 
+I used the first and last name, address and zip code columns to make the join because I think those are the most likely to be unique in combination. I think it's more likely that a number of our target demo slipped through the cracks than that we racked up a ton of false positives, but of course the possibility is still there. Some first/last name combos in the set are pretty common, and if two voters with the same name have a typo in their zip or address, it will probably result in a false positive.
+
+
 Q2. Based on your join, how many donations to Harris have come from people who registered this year? How many unique people does that represent, and which donors have given the largest _number_ of donations since July 20? 
 
 A2. 
 
+Based on the join, I think at least 363 donations came from newly-registered people? Sophia Hoffer-Perkins, Brittany Musolino and Eric Snipe appear to be the donors who have given the most separate times at 7 donations each.
+
 ```{r}
+new_harris_voters |> 
+  group_by(LastName, FirstName, Address, ResidentialZip) |> 
+  summarize(donations = n(), total = sum(amount)) |> 
+  arrange(desc(donations))
 ```
 
 Q3. What are the party and gender breakdowns of those donors? How many donations has Harris gotten from non-Democrats?
 
 A3. 
+All three of the donors mentioned above are democrats. Only 43 of her donations have been from non-democrats.
 
 ```{r}
-
+new_harris_voters|>
+  group_by(Party)|> summarise(donations = n(), total = sum(amount)) |> 
+  arrange(donations)
 ```
 
 Q4. Choose your own adventure: I want you to come up with a question you could ask of one of the dataframes we've created for this lab. It could involve just the new voters, or the donors or the joined dataframe, but it cannot be a variation of a previous question (so, for example, you can't ask, "How many Republicans have given to Harris"). First write the question and then try to answer it by writing code. If you're not sure of the exact code, try googling (or ask me for advice) but, at a minimum, describe what you think you'd have to do to answer it and what the results would look like. That can help.
 
 A4:
+Question: Where do Harris' top 10 donors (people that have given her the largest donations) live?
