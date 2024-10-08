@@ -110,3 +110,10 @@ Q4. Choose your own adventure: I want you to come up with a question you could a
 
 A4:
 Question: Where do Harris' top 10 donors (people that have given her the largest donations) live?
+
+
+
+```{r}
+
+```
+
