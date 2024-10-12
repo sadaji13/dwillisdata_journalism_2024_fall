@@ -78,8 +78,13 @@ md_voter_reg_changes <- md_voter_reg_changes|> rename(COUNTY=`...1`, ADDRESS_CHA
 
 md_voter_reg_changes
 ```
-What's the unexpected symbol? A SPACE - - NOT ALLOWED IN A COLUMN NAME
+What if I made a data set of just the counties and stuck it on?
 
+```{r}
+counties <- read_csv("data/tabula-md_county_table.csv")
+
+counties
+```
 
 
 ```{r}
