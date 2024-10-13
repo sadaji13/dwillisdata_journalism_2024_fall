@@ -108,11 +108,11 @@ counties
 ```
 ```{r}
 # Current registrations
-md_current_reg <- read_csv("data/tabula-md_active_reg.csv")
+by_party_2024 <- read_csv("data/tabula-md_active_reg.csv")
 
-md_current_reg <- bind_cols(counties, md_current_reg)
+by_party_2024 <- bind_cols(counties, md_current_reg)
 
-md_current_reg
+by_party_2024
 ```
 
 ```{r}
@@ -180,6 +180,8 @@ current_2022_registrations
 Q1. Calculate the percentage of registered Democrats, Republicans and unaffiliated voters for the entire state in September 2024 and September 2022, and then calculate the percentage change for those three party categories (the formula for percentage change is easy to remember: (New-Old)/Old). How would you describe the changes in these partisan categories in a story? What's the most interesting thing about these changes that would be the lede of that story?
 
 A1.
+
+
 
 ```{r}
 
