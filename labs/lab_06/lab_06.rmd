@@ -59,7 +59,10 @@ new_md_party_registrations <- new_md_party_registrations|>
   
   rename(TYPE = `...1`)
 
-
+new_md_party_registrations
+```
+```{r}
+new_md_party_registrations
 ```
 
 
@@ -68,7 +71,22 @@ new_md_party_registrations <- new_md_party_registrations|>
 # Removals
 md_reg_removals <- read_csv("data/tabula-md-reg-removal-by-party.csv")
 
+md_reg_removals <- md_reg_removals|> rename()
+  
+md_reg_removals
 ```
+I selected too much from the pdf in tabula - let's try again.
+
+```{r}
+md_registrant_removals <- read_csv("data/tabula-md_voter_removals.csv")
+
+md_registrant_removals <- md_registrant_removals|> rename(REASON=`...1`)
+
+md_registrant_removals
+```
+How do I get rid of the blank/NA columns?
+
+
 
 ```{r}
 # Changes
@@ -78,18 +96,34 @@ md_voter_reg_changes <- md_voter_reg_changes|> rename(COUNTY=`...1`, ADDRESS_CHA
 
 md_voter_reg_changes
 ```
+
+
 What if I made a data set of just the counties and stuck it on?
+NOTE:Use bind_cols to do this
 
 ```{r}
 counties <- read_csv("data/tabula-md_county_table.csv")
 
 counties
 ```
-
-
 ```{r}
 # Current registrations
-md_current_reg <- read_csv("data/tabula-county-changes-party-active_reg.csv")
+md_current_reg <- read_csv("data/tabula-md_active_reg.csv")
+
+md_current_reg <- bind_cols(counties, md_current_reg)
+
+md_current_reg
+```
+
+```{r}
+md_current_reg <- md_current_reg|> rename(INACTIVE=`...11`, CONF_MAILING= INACTIVEMAILINGCONF)
+
+md_current_reg
+```
+
+```{r}
+md_current_reg <- md_current_reg|> rename(CONF_MAILING= INACTIVEMAILINGCONF)
+md_current_reg
 ```
 
 ## Rinse, Repeat: September 2022 data
@@ -101,22 +135,45 @@ To answer the following questions, you'll need to calculate percentages and do o
 ```{r}
 # Party registrations
 
+reg_by_party_2022 <- read_csv("data/tabula-2022_new_reg_by_party.csv")
+
+reg_by_party_2022 <- reg_by_party_2022|> rename(COUNTY=...1)
+
+reg_by_party_2022
+
 ```
 
 ```{r}
 # Removals
 
+removals_2022 <- read_csv("data/tabula-2022_md_removals.csv")
+removals_2022 <- removals_2022|>rename(REASON=...1)
+removals_2022
 ```
 
 ```{r}
 # Changes
+changes_2022 <- read_csv("data/tabula-2022_changes.csv")
 
+changes_2022<- changes_2022|> rename(COUNTIES=...1)
+changes_2022
 ```
 
 ```{r}
 # Current registrations
+current_2022_registrations <- read_csv("data/tabula-2022_md_active_reg.csv")
 
+# Adding county column
+counties_2022 <- read_csv("data/tabula-2022_md_counties_only.csv")
+current_2022_registrations <- bind_cols(counties_2022, current_2022_registrations)
+current_2022_registrations
 ```
+```{r}
+current_2022_registrations<-current_2022_registrations|>rename(CONF_MAILING=INACTIVEMAILINGCONF, INACTIVE=...11)
+
+current_2022_registrations
+```
+
 
 ## Answer questions
 
