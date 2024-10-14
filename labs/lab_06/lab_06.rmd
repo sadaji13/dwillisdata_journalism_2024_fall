@@ -110,20 +110,15 @@ counties
 # Current registrations
 by_party_2024 <- read_csv("data/tabula-md_active_reg.csv")
 
-by_party_2024 <- bind_cols(counties, md_current_reg)
+by_party_2024 <- bind_cols(counties, by_party_2024)
 
 by_party_2024
 ```
 
 ```{r}
-md_current_reg <- md_current_reg|> rename(INACTIVE=`...11`, CONF_MAILING= INACTIVEMAILINGCONF)
+by_party_2024 <- by_party_2024|> rename(INACTIVE=...11,CONF_MAILING= INACTIVEMAILINGCONF )
 
-md_current_reg
-```
-
-```{r}
-md_current_reg <- md_current_reg|> rename(CONF_MAILING= INACTIVEMAILINGCONF)
-md_current_reg
+by_party_2024
 ```
 
 ## Rinse, Repeat: September 2022 data
@@ -180,20 +175,59 @@ current_2022_registrations
 Q1. Calculate the percentage of registered Democrats, Republicans and unaffiliated voters for the entire state in September 2024 and September 2022, and then calculate the percentage change for those three party categories (the formula for percentage change is easy to remember: (New-Old)/Old). How would you describe the changes in these partisan categories in a story? What's the most interesting thing about these changes that would be the lede of that story?
 
 A1.
-
-
+1.4% less democrats registered in 2024, 1% more republicans, and 9.8% more unaffiliated in 2024. The most interesting change is definitely the almost 10% increase in people registering as unaffiliated.
 
 ```{r}
+#Democrats in 2024
+2219417/4231403 = 52% 
+```
+```{r}
+#Democrats in 2022
+2250961/4161637 = 54%
+```
+```{r}
+#Percent change
+((2219417 - 2250961)/2250961)*100
 
 ```
+```{r}
+#Republicans in 2024
+1009323/4231403 = 24%
+```
+```{r}
+#Republicans in 2022
+998905/4161637 = 24%
+```
+```{r}
+#Percent change
+((1009323 - 998905)/998905)*100
+```
+```{r}
+#Unaffiliated in 2024
+923927/4231403 = 22%
+```
+```{r}
+#Unaffiliated in 2022
+841573/4161637 = 20%
+```
+```{r}
+#Percent change
+(( 923927-841573 )/841573)*100
+```
+NOTE: do all the math at once next time duh
 
 Q2. Among the Maryland jurisdictions with the most registered voters, which one had the biggest percentage increase in unaffiliated voters between 2022 and 2024? How did that county vote for governor in 2022 and for president in 2020? Contrast the partisan percentages of that county with the county that had the eighth-largest percentage increase in unaffiliated voters. You should display information from the data that shows the counties with the largest percentage increase first.
 
 A2.
 
 ```{r}
+unaffiliated_2024 <- by_party_2024|>
+  select(COUNTY, UNAF)|> rename(UNAF_2024=UNAF)
 
+unaffilated_2022 <- current_2022_registrations|>
+  select(COUNTY, UNAF)|> rename(UNAF_2022=UNAF)
 ```
+
 
 Q3. Do the party percentages of new registrants (% Dem, % Rep, % Unaffiliated) from September 2024 and September 2022 match the overall percentage of partisan registration in the state at those times?
 
