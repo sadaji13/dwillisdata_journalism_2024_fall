@@ -130,11 +130,11 @@ To answer the following questions, you'll need to calculate percentages and do o
 ```{r}
 # Party registrations
 
-reg_by_party_2022 <- read_csv("data/tabula-2022_new_reg_by_party.csv")
+new_reg_by_party_2022 <- read_csv("data/tabula-2022_new_reg_by_party.csv")
 
-reg_by_party_2022 <- reg_by_party_2022|> rename(COUNTY=...1)
+new_reg_by_party_2022 <- new_reg_by_party_2022|> rename(COUNTY=...1)
 
-reg_by_party_2022
+new_reg_by_party_2022
 
 ```
 
@@ -244,14 +244,25 @@ Q3. Do the party percentages of new registrants (% Dem, % Rep, % Unaffiliated) f
 
 NOTE: Does the party breakdown of the new registrants match the overall breakdown?
 ```{r}
+#new_reg_dem_change
+((19077 - 19428)/19428)*100
 
+#new_reg_rep_change
+((6977 - 5661)/5661)*100
+
+#new_reg_unaf_change
+((10975 - 11513)/ 11513)*100
 ```
-
-
+VS:
+state dem percent change =  -1.401357
+state rep percent change = 1.042942
+state unaf percent change = 9.785723
 
 In other words, did new registrants mirror the overall partisan composition of the electorate, or were they different? Do any of the methods of registration vary significantly from the overall partisan pattern? Which method is worthy of further exploration?
 
 A3.
+
+The party breakdown of the new registrants somewhat mirrors that of the overall composition of the electorate as far as the democrats declining and the republicans increasing, but the republican registrants increase much more among new registrants. What's really weird is how among the whole electorate, the percent change of unaffiliated voters is a notable of almost 10%, while among the new registrants it's actually in slight decline.
 
 ```{r}
 
