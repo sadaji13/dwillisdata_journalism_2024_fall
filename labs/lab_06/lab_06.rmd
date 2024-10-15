@@ -179,7 +179,7 @@ A1.
 
 ```{r}
 #Democrats in 2024
-2219417/4231403 = 52% 
+2219417/4231403 = 52%
 ```
 ```{r}
 #Democrats in 2022
@@ -226,10 +226,28 @@ unaffiliated_2024 <- by_party_2024|>
 
 unaffilated_2022 <- current_2022_registrations|>
   select(COUNTY, UNAF)|> rename(UNAF_2022=UNAF)
+
+unaffiliated_both <- unaffiliated_2024|> inner_join(unaffilated_2022)
+unaffiliated_both
+
+```
+```{r}
+unaffiliated_both |> 
+  mutate(county_per_change = (UNAF_2024 - UNAF_2022)/UNAF_2022)|>
+arrange(desc(county_per_change))
+
+
 ```
 
 
 Q3. Do the party percentages of new registrants (% Dem, % Rep, % Unaffiliated) from September 2024 and September 2022 match the overall percentage of partisan registration in the state at those times?
+
+NOTE: Does the party breakdown of the new registrants match the overall breakdown?
+```{r}
+
+```
+
+
 
 In other words, did new registrants mirror the overall partisan composition of the electorate, or were they different? Do any of the methods of registration vary significantly from the overall partisan pattern? Which method is worthy of further exploration?
 
@@ -250,3 +268,5 @@ A4.
 Q5. What's the best story idea or question you've seen as a result of the work you've done in this lab?
 
 A5.
+
+I mean, apart from the obvious question of WHY more people are registering as unaffiliated, another question I have is how old are these voters? Are they younger? What does the term unaffiliated mean to them?
