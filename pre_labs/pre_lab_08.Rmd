@@ -161,6 +161,8 @@ It's kind of like applying CSS to html. Here I'm changing the theme slightly to 
 
 **Task** Run the following code. Explain what you see after running the code in the space below. What has changed from the last codeblock? **Answer**
 
+It got rid of the space between the county names and their corresponding bars.
+
 ```{r}
 maryland_top_counties |>
   ggplot() +
@@ -188,7 +190,7 @@ And now we'll apply the economist theme from that package with theme_economist()
 
 **Task** Run the following code. Explain what you see after running the code in the space below. What has changed from the last version of the chart? **Answer**
 
-It is now a hideous blue color
+It is now a hideous blue color.
 
 ```{r}
 maryland_top_counties |>
@@ -263,6 +265,8 @@ We'll put the date on the x axis and total contributions on the y axis.
 ### Task 13: Run the following code
 
 **Task** Run the following code. Explain what you see after running the code in the space below. **Answer**
+
+A line chart with jagged peaks and valleys.
 
 NOTE: x AND y axis cause it's a line chart; the chart helps us to see the variations in a way that just looking at the data would not
 
