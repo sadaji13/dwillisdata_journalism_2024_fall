@@ -85,7 +85,10 @@ ballot_choices <-read_csv("data/frederick_cvr.csv")
 **Q3** Let's answer some basic questions about ticket-splitting: how many voters voted for different parties in the governor and comptroller's race? How many voted for the same party in both races? What percentage of all voters split their tickets in those races? In how many cases did voters choose the same party in all five contests? What percentage of all voters does that represent?
 
 **A3**
+11,871 voters split between the governor and comptroller.
+95,221 voters voted for the same parties in both those races.
 
+NOTE: Okay hang on those two numbers don't add up to 107,302. Why not?
 ```{r}
 ticket_splitters <- ballot_choices|> filter(governor_lt_governor=="DEM" & comptroller== "REP")
 
@@ -118,14 +121,14 @@ ticket_splitters5|>
 NOTE: REMEMBER != means not equal to
 
 ```{r}
-ticketsplitters <- ballot_choices|> filter(governor_lt_governor!= comptroller)
+ticketsplitters <- ballot_choices|> filter(governor_lt_governor != comptroller)
 
-ticketsplitters <-
-  ballot_choices|> mutate(total = sum(cast_vote_record))
-
-ticket_splitters
 ```
 
+```{r}
+samesies <- ballot_choices|> filter(governor_lt_governor == comptroller)
+samesies
+```
 
 
 
