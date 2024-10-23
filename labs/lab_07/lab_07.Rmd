@@ -45,14 +45,11 @@ You'll also need to load the list of American Community Survey variables from th
 **Task** load the variables from the 2022 5-year ACS and save them to a dataframe
 
 ```{r}
-ACS5 <- load_variables(2022,"acs5", cache=TRUE)
+ACS5 <- load_variables(2020,"acs5", cache=TRUE)
 
 view(ACS5)
 ```
 
-```{r}
-acs5_geography <- load_variables(2022, "acs5/cprofile", cache = TRUE)
-```
 
 ## Answer questions
 
@@ -80,15 +77,22 @@ Load the two CSV files in the `data` folder: one containing the ballot choices o
 voting_locations<-read_csv("data/frederick_precincts.csv")
 
 ballot_choices <-read_csv("data/frederick_cvr.csv")
+
+joined_frederick <- left_join(voting_locations,ballot_choices, by = "precinct")
+joined_frederick
 ```
 
 **Q3** Let's answer some basic questions about ticket-splitting: how many voters voted for different parties in the governor and comptroller's race? How many voted for the same party in both races? What percentage of all voters split their tickets in those races? In how many cases did voters choose the same party in all five contests? What percentage of all voters does that represent?
 
 **A3**
-11,871 voters split between the governor and comptroller.
-95,221 voters voted for the same parties in both those races.
+- 11,871 voters split between the governor and comptroller.
+- 95,221 voters voted for the same parties in both those races.
+- About 11% of voters seem to have split their tickets.
+- 
+
 
 NOTE: Okay hang on those two numbers don't add up to 107,302. Why not?
+SPOILER: CAUSE YOU DIDNT JOIN EARLIER
 ```{r}
 ticket_splitters <- ballot_choices|> filter(governor_lt_governor=="DEM" & comptroller== "REP")
 
@@ -109,25 +113,30 @@ ticket_splitters8 <- ballot_choices|>filter(governor_lt_governor=="REP" &comptro
 ```
 
 NOTE: this is terrible.
-```{r}
-total_split_votes<-
-ticket_splitters5|>
-  group_by(cast_vote_record)|> 
-  summarize(
-    total_split_votes = sum(cast_vote_record))
- 
-  total_split_votes
-```
+
+
 NOTE: REMEMBER != means not equal to
-
+NOTE: Have to redo this part bc I forgot to join at the beginning
 ```{r}
-ticketsplitters <- ballot_choices|> filter(governor_lt_governor != comptroller)
+ticketsplitters <- joined_frederick|> filter(governor_lt_governor != comptroller)
 
+#SPLIT COMP AND GOV PERCENTAGE
+(11871/107303)*100
+```
+```{r}
+same_gov_and_comp <- joined_frederick|> filter(governor_lt_governor == comptroller)
+
+#SAME COMP AND GOV PERCENTAGE
+(95221/107303)*100
 ```
 
+
 ```{r}
-samesies <- ballot_choices|> filter(governor_lt_governor == comptroller)
-samesies
+#SAME IN ALL 5 RACES
+
+all_same <- ballot_choices|> filter(governor_lt_governor==comptroller, governor_lt_governor==u_s_senator, governor_lt_governor==representative_in_congress_6, governor_lt_governor==attorney_general)
+
+all_same
 ```
 
 
@@ -136,8 +145,14 @@ samesies
 
 **A4**
 
+It looks like 21702 was the zip code with the most voters who split just on the governor while voting republican on all the others.
 ```{r}
+all_rep_but_gov <- joined_frederick|> filter(governor_lt_governor!="REP", comptroller=="REP", representative_in_congress_6=="REP", attorney_general=="REP", u_s_senator=="REP")|>
+  group_by(zipcode)|>
+  summarize(cast_vote_record = n())|>
+arrange(desc(cast_vote_record))
 
+all_rep_but_gov
 ```
 
 **Q5** Let's find out more about those zip codes from A4. Using tidycensus, get a dataframe of Maryland zip codes and their median ages, then join it to the dataframe you produced in A4. NOTE: you'll need to ensure that the two columns you use for the join are the same datatype. Summarize your findings; how would you describe the zip codes with more non-Cox Republicans compared to those with fewer? Where are those leading zip codes located?
