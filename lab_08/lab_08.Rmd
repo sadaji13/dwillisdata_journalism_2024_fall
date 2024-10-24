@@ -137,6 +137,9 @@ Follow these steps:
 **A4.** 
 
 ```{r}
-
+sent_and_returned|>
+ggplot()+
+  geom_point(aes(x=DEM_SENT, y= `DEM RECEIVED`
+))
   
 ```
