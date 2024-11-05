@@ -74,6 +74,8 @@ Let's look at these precincts. We have 356 of them, according to this data.
 
 **Task** Run the following code. Describe the output in the space below: what kind of information does it contain? **Answer**
 
+It contains normal data frame stuff but also contains geometric information.
+
 ```{r}
 View(pg_precincts)
 ```
@@ -84,11 +86,13 @@ But where in Prince George's County are these places? We can simply plot them on
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
+A map with latitude and longitude lines and also ghost precincts.
 ```{r}
 pg_precincts |>
   ggplot() +
   geom_sf() +
   theme_minimal()
+
 ```
 
 Each shape is a precinct, with the boundaries plotted according to its degrees of longitude and latitude.
@@ -107,6 +111,8 @@ Then load it:
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
+I aquired the tigris library. 
+
 ```{r}
 # install.packages('tigris')
 library(tigris)
@@ -117,6 +123,8 @@ Now, let's use the counties() function from tigris to pull down a shapefile of a
 ### Task: Run code
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
+
+A data frame with over 3,000 rows and 18 columns including one for geometric data.
 
 ```{r}
 
@@ -133,6 +141,8 @@ This county shapefile has all 3233 U.S. counties. We only want the Maryland coun
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
+We've made a data frame with only the 
+
 ```{r}
 md_counties <- counties |>
   filter(STATEFP == "24")
@@ -144,6 +154,8 @@ To see what this looks like, let's plot it out with ggplot. We can pretty clearl
 ### Task: Run code
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
+
+
 
 ```{r}
 md_counties |>
@@ -168,6 +180,7 @@ ggplot() +
   geom_sf(data=pg_precincts) +
   theme_minimal()
 ```
+#The thing you want to be most visible needs to go last; base layer goes first ! More detail on! top!
 
 Notice the subtle differences at the boundaries?
 
@@ -176,6 +189,8 @@ Let's dive back into Prince George's precincts and see what more we can find out
 ### Task: Run code to load the turnout data from the May 2024 Primary election
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
+
+The output is a data frame showing precincts, early and absentee ballots, provisional and total eligible ballots as well as the total.
 
 ```{r}
 primary_24 <- read_csv("data/Official by Party and Precinct.csv") |> clean_names()
@@ -202,6 +217,8 @@ Now we can use color to distinguish precincts from each other. Let's use the tot
 ### Task: Run code
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
+
+Our map now has a legend and the precincts are in navy hues.
 
 ```{r}
 ggplot() +
@@ -274,6 +291,8 @@ md_county_population <- get_acs(geography = "county",
 
 md_county_population
 ```
+
+#Running geometry = TRUE will take our data and give us a geometry column, making a map
 
 We now have a new column, geometry, that contains the "MULTIPOLYGON" data that will draw an outline of each county when we go to draw a map.
 

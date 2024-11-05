@@ -215,5 +215,37 @@ answer below along with the URLs of your maps.
 **A3.**
 
 ```{r}
+#Download winred and actblue data
+
+winred<- read_csv("data/md_winred_zip_totals.csv")
+actblue<-read_csv("data/md_actblue_zip_totals.csv")
+
+acs_2023 <- load_variables(2023, dataset = "acs1", cache=FALSE)
+
+population_by_zip <- get_acs(geography="zcta", variables = "B01003_001", state="MD", year = 2019)
+   
+    #Combining data but first must make same data type 
+
+actblue<- actblue|> 
+  mutate(zip=as.character(zip))
+
+blue_plus_population<- actblue|> inner_join(population_by_zip, join_by(zip==GEOID))
+  
+```
+```{r}
+winred <- winred|> 
+  mutate(zip=as.character(zip))
+
+red_plus_population<- winred|> inner_join(population_by_zip, join_by(zip==GEOID))
+
+red_plus_population
+```
+
+```{r}
+#calculating per capita
+
+win_red_population_map<- red_plus_population|> select
+
 
 ```
+
