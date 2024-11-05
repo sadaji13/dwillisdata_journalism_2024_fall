@@ -243,8 +243,14 @@ red_plus_population
 
 ```{r}
 #calculating per capita
+ 
+#For actblue:
+win_red_population_map<- red_plus_population|> select(zip, total, donations, estimate)|>
+  mutate(donations_per_1000= (donations/estimate)*1000)
 
-win_red_population_map<- red_plus_population|> select
+#For winred:
+act_blue_population_map<- blue_plus_population|> select(zip, total, donations, estimate)|>
+  mutate(donations_per_1000 =(donations/estimate)*1000)
 
 
 ```
