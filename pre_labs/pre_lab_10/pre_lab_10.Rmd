@@ -111,7 +111,7 @@ Then load it:
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
-I aquired the tigris library. 
+aquired the tigris library. 
 
 ```{r}
 # install.packages('tigris')
@@ -141,7 +141,7 @@ This county shapefile has all 3233 U.S. counties. We only want the Maryland coun
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
-We've made a data frame with only the 
+We've made a data frame with only the Maryland counties.
 
 ```{r}
 md_counties <- counties |>
@@ -155,7 +155,7 @@ To see what this looks like, let's plot it out with ggplot. We can pretty clearl
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
-
+It's a map of Maryland without the bay.
 
 ```{r}
 md_counties |>
@@ -173,6 +173,8 @@ We're also going to change things up a bit to put the datasets we want to displa
 ### Task: Run code
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
+
+A map of PG County divided by precincts.
 
 ```{r}
 ggplot() +
@@ -207,7 +209,7 @@ Now we can join the precincts to the turnout data.
 ### Task: Run code to join the precinct shapes with the voter turnout data
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
-
+A map of PG County divided by precinct including "ghost precincts"
 ```{r}
 pg_precincts_with_turnout <- pg_precincts |> left_join(pg_turnout, by=c("PRECINCT_ID"="precinct"))
 ```
@@ -254,6 +256,7 @@ We've got voters by county, so let's load that from the data folder and take a l
 
 **Task** Run the following code. Describe the output in the space below. **Answer**
 
+A data frame with voters and party affiliations across MD counties.
 ```{r}
 voters_by_county <- read_csv("data/eligible_voters.csv")
 

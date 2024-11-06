@@ -252,6 +252,9 @@ win_red_population_map<- red_plus_population|> select(zip, total, donations, est
 act_blue_population_map<- blue_plus_population|> select(zip, total, donations, estimate)|>
   mutate(donations_per_1000 =(donations/estimate)*1000)
 
-
+```
+```{r}
+write_csv(act_blue_population_map, "data/actblue_population_data_for_map")
+write_csv(win_red_population_map, "data/winred_population_data_for_map")
 ```
 
