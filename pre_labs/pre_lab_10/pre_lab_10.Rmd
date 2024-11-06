@@ -74,7 +74,7 @@ Let's look at these precincts. We have 356 of them, according to this data.
 
 **Task** Run the following code. Describe the output in the space below: what kind of information does it contain? **Answer**
 
-It contains normal data frame stuff but also contains geometric information.
+It contains geometric information.
 
 ```{r}
 View(pg_precincts)
