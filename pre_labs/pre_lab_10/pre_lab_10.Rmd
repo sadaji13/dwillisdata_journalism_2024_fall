@@ -128,9 +128,6 @@ A data frame with over 3,000 rows and 18 columns including one for geometric dat
 
 ```{r}
 
-counties <- counties()
-
-glimpse(counties)
 ```
 
 This looks pretty similar to our places shapefile, in that it looked mostly like a normal dataframe with the exception of the new geometry column (this time called `geometry`, which is pretty common).
