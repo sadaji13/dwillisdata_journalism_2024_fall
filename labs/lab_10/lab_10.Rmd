@@ -65,8 +65,14 @@ counties_and_geometry <- md_counties|> left_join(md_senate_county_2024, join_by(
 
 md_senate_county_2024<- md_senate_county_2024|> 
   mutate(GEOID=as.character(GEOID))
-
 counties_and_geometry <- md_counties|> left_join(md_senate_county_2024, join_by(GEOID))
+```
+```{r}
+counties_and_geometry |>
+  ggplot() +
+  geom_sf() +
+  theme_minimal()
+
 ```
 
 **Q2.** Make a county-level map showing the difference between Donald Trump's county-level performance this year and Larry Hogan's, using percentages to compare the two as you did in Q1. You can use the dataframe you initially loaded for Q1, and you'll need to load the 2024 presidential results in the data folder and join them to it before proceeding. Are there any counties where Trump got a higher percentage than Hogan? How would you describe the map showing the Trump-Hogan difference?
