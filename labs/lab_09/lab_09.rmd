@@ -68,13 +68,13 @@ write_csv(md_votes_by_type, "data/md_votes_by_type.csv")
 
 ```
 
-#Mail-ins 2018: (162814/2304512)*100 #Election Day 2018:
+#Mail-ins 2018: (162814/2304512)*100 #Election Day 2018
 (1482029/2304512)*100 #Early 2018: (659669/2304512)\*100
 
-#Mail-ins 2020: (1502986/3037030)*100 #Election Day 2020:
+#Mail-ins 2020: (1502986/3037030)*100 #Election Day 2020
 (437126/3037030)*100 #Early 2020: (983985/3037030)\*100
 
-#Mail-ins 2022: (338748/1754475)*100 #Election Day 2022:
+#Mail-ins 2022: (338748/1754475)*100 #Election Day 2022
 (1037176/1754475)*100 #Early 2022: (378551/1754475)\*100
 
 **Q2.** You've been assigned to track early-voting turnout in Maryland
