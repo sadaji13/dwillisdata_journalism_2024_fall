@@ -96,13 +96,13 @@ md_pres_county_2024 <- read_csv("data/md_pres_county_24.csv")
 md_senate_county_2024<- 
  md_senate_county_2024|> mutate(GEOID=as.character(GEOID))
 
-md_pres_county_2024<- md_pres_county_2024|> mutate((GEOID=as.character(GEOID))
+md_pres_county_2024<- md_pres_county_2024|> mutate(GEOID=as.character(GEOID))
 
 pres_and_senate_2024 <- md_pres_county_2024|> inner_join(md_senate_county_2024, join_by(GEOID))
 
 pres_and_senate_2024
 ```
-
+NOTE: MAP PROBS ISNT THE BEST WAY TO DISPLAY THE FINDINGS HERE; GO WITH DUMBBELL CHART
 ```{r}
 md_pres_county_2024 <- md_senate_county_2024|>
   mutate(
