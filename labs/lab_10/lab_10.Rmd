@@ -106,8 +106,8 @@ NOTE: MAP PROBS ISNT THE BEST WAY TO DISPLAY THE FINDINGS HERE; GO WITH DUMBBELL
 ```{r}
 md_pres_county_2024 <- md_senate_county_2024|>
   mutate(
-    percent_angela = (Alsobrooks/(Alsobrooks + Hogan + Scott)*100),
-  percent_hogan = (Hogan/(Alsobrooks + Hogan + Scott)*100))
+    percent_trump = (Trump/(Trump + Hogan + Scott)*100),
+  percent_hogan = (Hogan/(Trump + Hogan + Scott)*100))
 ```
 
 **Q3** Make another map showing the difference between Larry Hogan's county-level performance this year and from his governor race in 2018, using percentages to compare the two as you did in Q2. You can use the dataframe you initially loaded for Q1, and you'll need to load the 2018 governor results in the data folder and join them to it before proceeding. Are there any counties where Hogan did better this year? How would you describe the map showing the difference?
