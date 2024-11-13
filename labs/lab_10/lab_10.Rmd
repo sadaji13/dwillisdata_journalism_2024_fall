@@ -73,6 +73,9 @@ counties_and_geometry |>
   geom_sf() +
   theme_minimal()
 ```
+I HAVE TO USE MUTATE TO SHOW THE DIFF BETWEEN ANGELA AND HOGAN AND THEN MAKE A MAP OF THE DIFFERENCES - THEN DO THE SAME THING WITH HOGAN AND TRUMP
+
+MUTATE< JOIN, THEN SAVE AS ITSLEF
 ```{r}
 ggplot() +
   geom_sf(data=counties_and_geometry, aes(fill=percent_angela)) +
@@ -90,6 +93,12 @@ Also answer this: is a map the best way to present this data? What else could yo
 #Load Presidential Data from 2024
 
 md_pres_county_2024 <- read_csv("data/md_pres_county_24.csv")
+
+#ADD PERCENT TRUMP COLUMN
+md_pres_county_2024<- md_pres_county_2024|>
+mutate(
+    percent_trump = (Trump/(Trump + Harris + Oliver + Stein + Kennedy)*100))
+
 
 #Join pres and senate data BUT FIRST MAKE SENATE GEOID COLUMN A CHARACTER COLUMN
 
