@@ -148,7 +148,7 @@ So, all we need to do now is to store that single dataframe as an object. We can
 
 **Task** Run the following code in the gray-colored codeblock below to extract all tables in the HTML and save it as a dataframe. What do you notice about the columns? **Answer**
 
-Now the results are in the form of a data frame; both the candiates and the parties are in the column names; the 25th row has both the totals and the percentages 
+Now the results are in the form of a data frame; both the candidates and the parties are in the column names; the 25th row has both the totals and the percentages 
 
 ```{r}
 # Read in all html from table, store all tables on page as nested list of dataframes.
