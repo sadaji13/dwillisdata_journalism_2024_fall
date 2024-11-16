@@ -1,0 +1,81 @@
+title: "Data Analysis Project"
+author: "Marijke Friedman, Brendan Weissel, Sade Ajishegiri"
+date: "2024-11-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(rvest)
+library(tidyverse)
+library(janitor)
+library(lubridate)
+library(ggthemes)
+
+```
+
+
+```{r}
+ev_raw <- read_csv("data/EarlyVoting RAW data.csv") 
+
+ev_raw <- ev_raw |>
+  clean_names()
+glimpse(ev_raw)
+```
+
+```{r}
+#votes by day 
+votes_by_day <- ev_raw |> 
+  summarise(across(starts_with("day"), \(x) sum(x, na.rm = TRUE)))
+
+#votes by party
+votes_by_party <- ev_raw |>
+  group_by(party_code) |> 
+  summarise(total_votes = sum(day1, day2, day3, day4, day5, day6, day7, day8, na.rm = TRUE)) |> 
+  arrange(party_code)
+
+### votes by precinct 
+votes_by_precinct <- ev_raw|>
+  group_by(precinct)|>
+  summarise(total_votes = sum(day1, day2, day3, day4, day5, day6, day7, day8, na.rm = TRUE))|>
+  arrange(precinct)
+
+### votes by gender
+votes_by_gender <- ev_raw|>
+  group_by(gender_code)|>
+  summarise(total_votes = sum(day1, day2, day3, day4, day5, day6, day7, day8, na.rm = TRUE))|>
+  arrange(gender_code)
+
+### votes by age
+votes_by_age <- ev_raw|>
+  group_by(age_group)|>
+  summarise(total_votes = sum(day1, day2, day3, day4, day5, day6, day7, day8, na.rm = TRUE))|>
+  arrange(age_group)
+```
+
+### Our original questions:
+
+1. What age group had the highest turn out for early voting?
+2. What county had the highest turnout for early voting?
+3. How does the 2024 early voting data compare to the 2020 early voting data?
+4. What counties had the closest margin between registered Republicans and Democrats who voted early? Can we identify any swing counties from this?
+5. How do early voting patterns vary among different demographic groups? 
+
+###: Our new questions:
+
+1. What precincts did younger age groups dominate voting early in? What do these precincts have in common?
+2. Are there any precincts where certain demographic groups outperformed their Census data? For example, are there precincts were 65% of the early voters were women despite women only being 50% of the voting age population?
+3. Which precincts had the most voters identifying outside of male/female? How did they vote?
+4. 
+5. 
+
+### How have we refined our questions?
+
+We refined our questions to focus more on precinct level data instead of overall state data. We are going to look more closely at precincts that have interesting and unusal patterns and why this might be. 
+
+### Describe any obvious limitations or flaws in our data. Why might it not be able to answer the list of questions we have posed? Describe the limits of the data in terms of the timeframe, what is and is not included and any codes or other information you'd need to find definitions for, and what you've done to better define it. 
+
+The data we have is just early voting data. This doesn't tell us that much about the overall electorate. It could be helpful to bring in actual results data and more information about the overall electorate. We may also use Census data to be able to make more meaningful comparisons and dive into our data more. It could also help to use voter registration data so we can look at voter turnout numbers. 
