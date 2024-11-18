@@ -56,6 +56,7 @@ votes_by_age <- ev_raw|>
   arrange(age_group)
 ```
 
+
 ### Our original questions:
 
 1. What age group had the highest turn out for early voting?
@@ -67,15 +68,17 @@ votes_by_age <- ev_raw|>
 ###: Our new questions:
 
 1. What precincts did younger age groups dominate voting early in? What do these precincts have in common?
-2. Are there any precincts where certain demographic groups outperformed their Census data? For example, are there precincts were 65% of the early voters were women despite women only being 50% of the voting age population?
-3. Which precincts had the most voters identifying outside of male/female? How did they vote?
-4. 
-5. 
+2. Are there any precincts where certain demographic groups outperformed their Census data? For example, are there precincts were 65% of the early voters were women, despite women only being 50% of the voting age population?
+3. Which precincts had the most early voters identifying outside of male/female? How did they vote?
+4. Which precincts have historically turned out more early voters than others? How did they compare this election?
+5. Similar to question 2, are there precincts with a high percentage of college students that, despite being made up of the least likely early voters, had a very high percentage of early votes cast by that age group? 
 
-### How have we refined our questions?
+### How we've refined our questions:
 
-We refined our questions to focus more on precinct level data instead of overall state data. We are going to look more closely at precincts that have interesting and unusal patterns and why this might be. 
+Based on your feedback, we're refining our questions to focus more on precinct-level data instead of overall state data. We are looking more closely at patterns that stand out in certain precincts - taking note of the unusual and trying to find the reasons behind it.
 
-### Describe any obvious limitations or flaws in our data. Why might it not be able to answer the list of questions we have posed? Describe the limits of the data in terms of the timeframe, what is and is not included and any codes or other information you'd need to find definitions for, and what you've done to better define it. 
+### Describing any obvious limitations/flaws in our data - Why might we be unable to answer our previous questions? Describe the limits of the data in terms of the time frame, what is and is not included and any codes or other information we'll need to find definitions for, and what we've done to better define it. 
 
-The data we have is just early voting data. This doesn't tell us that much about the overall electorate. It could be helpful to bring in actual results data and more information about the overall electorate. We may also use Census data to be able to make more meaningful comparisons and dive into our data more. It could also help to use voter registration data so we can look at voter turnout numbers. 
+The data we have is just early voting data. It's interesting to analyze because early voters are likely to be more civic duty-minded. But the early voter data doesn't tell us that much about the overall electorate, so it could be helpful to bring in actual results data and more information about the overall electorate.
+We'll likely use Census data so we can make more meaningful comparisons, plus voter registration data so we can look at voter turnout numbers. 
+As far as defining some of the terms in our questions and within our data, in the votes_by_gender table, what does "NA" actually mean? Did voters in that category mark a box? Did they write in something other than male or female? Was there an option that said "prefer not to say"?

@@ -122,10 +122,13 @@ press_release_titles <- press_release_scrape |> html_elements ("h2 a")
 
 press_release_dates <- press_release_scrape|> html_elements("time")
 
+#Making the actual data frame ;name, url, date are all column names!
 rllycooldataframe<- tibble(
   name = press_release_titles |> html_text(trim = TRUE),
   url = press_release_titles|> html_attr("href"),
   date = press_release_dates|>html_text())
+
+#Help I don't know how to isolate just the word campaign
 
  
  # //*[@id="post-3695"]/time
@@ -148,5 +151,22 @@ Finally, tell me what questions you could ask of this data, and what other infor
 **A3**
 
 ```{r}
+sen_cardin_press_releases <- "https://www.cardin.senate.gov/?post_type=press-releases"
+
+cardin_scrape <- sen_cardin_press_releases|>
+  read_html()
+
+# show the result
+cardin_scrape
+
+#Look for specific html element(s) - turn them into data frames:
+cardin_pr_dates <- cardin_scrape |> html_elements("h5") 
+
+cardin_pr_titles <- cardin_scrape|>html_elements("h3")
+
+#ermmm cardin_pr_urls?? <- cardin_scrape|> html_elements("")
+
+
+
 
 ```
