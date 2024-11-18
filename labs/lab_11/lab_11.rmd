@@ -164,9 +164,14 @@ cardin_pr_dates <- cardin_scrape |> html_elements("h5")
 
 cardin_pr_titles <- cardin_scrape|>html_elements("h3")
 
-#ermmm cardin_pr_urls?? <- cardin_scrape|> html_elements("")
 
+#Making the actual data frame !
 
+even_cooler_cardin_pr<- tibble(
+ 
+  title =  cardin_pr_titles|> html_text(trim = TRUE),
+  url = cardin_pr_titles|> html_attr("href"),
+  date = cardin_pr_dates|> html_text())
 
-
+even_cooler_cardin_pr
 ```
