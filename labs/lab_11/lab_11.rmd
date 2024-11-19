@@ -129,6 +129,10 @@ rllycooldataframe<- tibble(
   date = press_release_dates|>html_text())
 
 #Help I don't know how to isolate just the word campaign
+#NOTE - str_detect of course!!
+
+
+rllycooldataframe|> filter(str_detect(press_release_titles, "Campaign"))
 
  
  # //*[@id="post-3695"]/time
@@ -162,7 +166,7 @@ cardin_scrape
 #Look for specific html element(s) - turn them into data frames:
 cardin_pr_dates <- cardin_scrape |> html_elements("h5") 
 
-cardin_pr_titles <- cardin_scrape|>html_elements("h3")
+cardin_pr_titles <- cardin_scrape|>html_elements("h3 a")
 
 
 #Making the actual data frame !
@@ -175,3 +179,4 @@ even_cooler_cardin_pr<- tibble(
 
 even_cooler_cardin_pr
 ```
+So many of Cardin's press releases contain dollar signs. It could be interesting to find out how many put that right in the title and how he compares to other reps? Also, are there maybe periods of the year that correspond to bigger numbers being thrown around? 
