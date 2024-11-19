@@ -93,6 +93,8 @@ If you are trying to create a list of unique words, R will treat differences in 
 
 **Task** Run the following code and describe what the `unique` function does to the original list of words. **Answer**
 
+It shortens the original list by getting rid of repeat words.
+
 ```{r}
 a_list_of_words <- c("Dog", "dog", "dog", "cat", "cat", ",")
 unique(a_list_of_words)
@@ -103,6 +105,8 @@ Fortunately, this is a solved problem with tidytext, which has a function called
 ### Task 6: Trying out unnest_tokens
 
 **Task** Run the following code and describe the output of using the `unnest_tokens` function. **Answer**
+
+It gives us a table with every single word in the press releases.
 
 ```{r}
 unique_words <- releases |> select(text) |>
@@ -167,6 +171,7 @@ From there, we can get a simple word frequency by just grouping them together an
 ### Task 9: Using anti_join
 
 **Task** Run the following code and describe the results. Is it more interesting than before? **Answer**
+
 It is more interesting than before - these words do actually mean something, but they don't actually appear that often.
 ```{r}
 unique_words |>
@@ -241,7 +246,7 @@ So this block is is going to do the following:
 
 **Task** Run the following code and describe the results. **Answer**
 
-The phrases are becoming more nuanced, probably including health-related words high up because of the pandemic.
+Now we have a data frame with 2-word phrases that are more nuanced and likely include health-related words high up because of the pandemic.
 
 ```{r}
 
@@ -265,6 +270,8 @@ And we already have a different, more nuanced result. Health was among the top s
 ### Task 13: Create a dataframe with the top 10 two-word phrases for 2024
 
 **Task** Run the following code and describe the results. **Answer**
+
+We've made the same kind of data frame as the previous question, but for 2024's releases. Health care is now the number one most used phrase, but in 2024 he seems to mention "amounts" a lot.
 
 ```{r}
 releases |>
