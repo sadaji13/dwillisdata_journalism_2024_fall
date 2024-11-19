@@ -124,6 +124,7 @@ md_pres_county_2024 <- md_senate_county_2024|>
 **A3**
 
 ```{r}
+So sorry I cannot look at this anymore.
 ```
 
 **Q4.** Choose your own map adventure! In the data folder I've included Maryland county-level results for the abortion rights amendment vote this year, plus the 2020 presidential results by county and 2022 governor's results by county. Using one of those and at least one other contest for comparison, make a county-level map showing what you think is the most interesting aspect of that data, and describe the results in terms of a possible story. You can bring in other data, such as Census information, if you like.
