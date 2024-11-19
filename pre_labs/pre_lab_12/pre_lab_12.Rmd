@@ -167,7 +167,7 @@ From there, we can get a simple word frequency by just grouping them together an
 ### Task 9: Using anti_join
 
 **Task** Run the following code and describe the results. Is it more interesting than before? **Answer**
-It is more interesting than before - these words mean something, but they don't actually appear that often.
+It is more interesting than before - these words do actually mean something, but they don't actually appear that often.
 ```{r}
 unique_words |>
   anti_join(stop_words) |>
@@ -201,7 +201,7 @@ Then we can create top 10 lists for both of them and compare:
 
 **Task** Run the following code and describe the results. **Answer**
 
-A lot of the most frequently used words are the same, but "health" has moved down and "Baltimore has taken the spot of most-used word in Cardin's 2024 releases.
+A lot of the most frequently used words are the same, but "health" has moved down and "Baltimore" has taken the spot of most-used word in Cardin's 2024 releases.
 
 ```{r}
 unique_words_2022 |>
