@@ -19,7 +19,7 @@ library(ggthemes)
 
 
 ```{r}
-ev_raw <- read_csv("data/EarlyVoting RAW data.csv") 
+ev_raw <- read_csv("data/EV_RAW_DATA.csv") 
 
 ev_raw <- ev_raw |>
   clean_names()
@@ -56,7 +56,6 @@ votes_by_age <- ev_raw|>
   arrange(age_group)
 ```
 
-
 ### Our original questions:
 
 1. What age group had the highest turn out for early voting?
@@ -68,10 +67,51 @@ votes_by_age <- ev_raw|>
 ###: Our new questions:
 
 1. What precincts did younger age groups dominate voting early in? What do these precincts have in common?
-2. Are there any precincts where certain demographic groups outperformed their Census data? For example, are there precincts were 65% of the early voters were women, despite women only being 50% of the voting age population?
-3. Which precincts had the most early voters identifying outside of male/female? How did they vote?
-4. Which precincts have historically turned out more early voters than others? How did they compare this election?
-5. Similar to question 2, are there precincts with a high percentage of college students that, despite being made up of the least likely early voters, had a very high percentage of early votes cast by that age group? 
+2. Are there any precincts where certain demographic groups outperformed their Census data? For example, are there precincts were 65% of the early voters were women despite women only being 50% of the voting age population?
+3.  Which precincts had the most early voters identifying outside of male/female? How did they vote?
+
+
+```{r}
+#Trying to answer Q3 - Sade
+
+#comments from Derek: "Much better job of refining your questions in this update. I suspect that the relatively low number of early voters not identifying as either male or female might be relatively quick to answer, so maybe tackle that one first?"
+
+#"To answer your question about the gender_code values, the Maryland voter registration form (https://elections.maryland.gov/voter_registration/documents/English_Internet_VRA.pdf) offers three choices: Male, Female, and "Unspecified or Other". That last one isn't super helpful in terms of precision, because there could be a big difference between declining to say and affirmatively identifying as non-binary, for example. But it's the best you have. I would be very interested in the age and party groupings of those voters, fwiw."
+
+#Finding ages/parties of unspecified/other gender identifiers - - - 
+
+```
+
+```{r}
+#how many gender codes are there AND what percentage of NB early voters were there?
+
+ev_raw |> 
+  group_by(gender_code) |> 
+  count()
+
+```
+
+```{r} 
+(2777/(80405+77290+2777))*100
+  
+```
+1.7% of early voters were effectively non binary.
+
+```{r}
+
+#trying to find precincts with the most nonbinary voters:
+
+nonbinary_voters <- ev_raw |> filter(is.na(gender_code))
+
+nonbinary_voters<- nonbinary_voters|>mutate()
+
+
+
+```
+
+
+4. Which precincts have historically turned out more early voters than others? How did it compare this election?
+5. Do most precincts follow the general pattern of having the most people vote on the first and last days of early voting? Which precincts differ from this pattern?
 
 ### How we've refined our questions:
 
