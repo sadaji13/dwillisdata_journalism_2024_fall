@@ -26,7 +26,7 @@ But they are - mostly - very useful for people who write code and for those tryi
 We'll be using a service called Groq for the examples here. You should [sign up for a free account](https://www.groq.com) and [create an API key](https://console.groq.com/docs/quickstart). Make sure you copy that key. We'll also need to install an R package to handle the responses:
 
 ```{r}
-install.packages("devtools")
+#install.packages("devtools")
 library(devtools)
 devtools::install_github("heurekalabsco/axolotr")
 library(axolotr)
@@ -49,6 +49,7 @@ Let's make sure that worked. We'll be using the [Llama 3.1 model released by Met
 **Task** Run the following code in the gray-colored codeblock below, and tell me what you think the difference between the first 10 names and the second 10 names is, if any.
 
 **Answer**
+I don't notice the names getting worse exactly, but they are getting less mongoose-themed.
 
 ```{r}
 groq_response <- axolotr::ask(
@@ -205,9 +206,10 @@ knitr::include_graphics(rep("images/groq_llama32_vision.png"))
 
 **Task** Follow the instructions below, then evaluate the LLM's response. Did it do well? What would you change?
 
+**Answer**
+
 Then click on the image icon next to the "Submit" button and choose the "fundraising_email.png" file from the images folder, and add it. Then, add this as the prompt: "Describe the things in this image, being as specific as possible."
 
-**Answer**
 
 ### Task 8: Run a model on your laptop!
 
