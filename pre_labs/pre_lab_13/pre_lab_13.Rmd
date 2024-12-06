@@ -209,6 +209,12 @@ knitr::include_graphics(rep("images/groq_llama32_vision.png"))
 
 **Answer**
 
+No! This was its response: "I'm happy to help you with your request. However, I need to clarify that I'm a large language model, I don't have the capability to visually see or access images. I can only respond based on the description provided.
+
+Unfortunately, I don't have any information about the image you're referring to. If you can provide more context or a detailed description of the image, I'd be happy to try and assist you in identifying the specific things in the image." 
+
+What have I done wrong?
+
 Then click on the image icon next to the "Submit" button and choose the "fundraising_email.png" file from the images folder, and add it. Then, add this as the prompt: "Describe the things in this image, being as specific as possible."
 
 
