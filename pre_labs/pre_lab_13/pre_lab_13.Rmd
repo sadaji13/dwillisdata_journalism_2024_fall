@@ -30,6 +30,7 @@ We'll be using a service called Groq for the examples here. You should [sign up 
 library(devtools)
 devtools::install_github("heurekalabsco/axolotr")
 library(axolotr)
+library(tidyverse)
 ```
 
 Then we can load that library and, using your API key, setup your credentials:
@@ -158,7 +159,7 @@ When you're writing code and run into error messages, you should read them. But 
 
 **Task** Run the following code. Does the response make sense? Why or why not?
 
-**Answer** Yes - but it changes slightly when run multiple times.
+**Answer** Yes, it correctly identifies the error - but the response changes slightly when run multiple times.
 
 ```{r}
 debug_response <- axolotr::ask(
@@ -181,7 +182,7 @@ Let's say that you have some data that you want to interview, but aren't sure ho
 
 **Answer**
 
-The output makes sense and suggests we do many of the things we've been doing with this data all semester. The suggestions don't necessarily match the columns we have, though.
+The output makes sense and lots of its suggestions are things we've been doing with this data all semester. The suggestions don't necessarily match the columns we have, though.
 
 ```{r}
 idea_response <- axolotr::ask(
