@@ -222,7 +222,7 @@ Now switch back to RStudio, and install the `mall` package:
 **Task** Install the mall package by running this code, and then comment out the install.packages line. We'll tell the `mall` package to use the llama3.2 model via ollama.
 
 ```{r}
-install.packages("mall")
+#install.packages("mall")
 library(mall)
 llm_use("ollama", "llama3.2", seed = 100, temperature = 0)
 ```
